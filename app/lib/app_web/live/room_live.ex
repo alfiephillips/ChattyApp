@@ -5,9 +5,11 @@ defmodule AppWeb.RoomLive do
   @impl true
   def mount(%{"id" => room_id}, _session, socket) do
     topic = "room:" <> room_id
-    AppWeb.Endpoint.subscribe(topic)
+    if connected?(socket) do
+      AppWeb.Endpoint.subscribe(topic)
+    end
 
-    {:ok, assign(socket, room_id: room_id, topic: topic, messages: [])}
+    {:ok, assign(socket, room_id: room_id, topic: topic, messages: [], temporary_assigns: [messages: []])}
   end
 
   @impl true
@@ -20,6 +22,6 @@ defmodule AppWeb.RoomLive do
   @impl true
   def handle_info(%{event: "new-message", payload: message}, socket) do
     Logger.info(payload: message)
-    {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
+    {:noreply, assign(socket, messages: [message])}
   end
 end
