@@ -3,8 +3,9 @@
     <p>Currently chatting in <b><%= @room_id %></b></p>
     <div class="chat-container">
         <div class="chat-messages">
-        <h3><b>Name</b></h2>
-        <p>Body</p>
+        <%= for message <- @messages do%>
+            <p><%= message %></p>
+        <% end %>
         </div>
         <%= f = form_for :chat, "#", class: "chat-form", phx_submit: :submit_message %>
             <%= text_input f, :message, placeholder: "Enter your message:" %>
