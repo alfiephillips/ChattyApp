@@ -3,14 +3,15 @@
     <p>Currently chatting in <b><%= @room_id %></b> as <b><%= @username %></b></p>
     <div class="chat-container">
         <div class="chat-messages" phx-update="append">
-        <%= for message <- @messages do%>
-            <p id="<%= message.uuid %>"><b><%= message.username %></b>: <%= message.content %></p>
+        <%= for message <- @messages do %>
+            <%= display_message(message) %>
         <% end %>
         </div>
          <div class="user-list">
             <h3>Users Online</h3>
-                <p>User 1</p>
-                <p>User 2</p>
+                <%= for user <- @user_list do %>
+                    <p><%= user %></p>
+                <% end %>
             </div>
     </div>
 
