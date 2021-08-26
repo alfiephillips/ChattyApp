@@ -18,9 +18,7 @@ defmodule AppWeb.RoomLive do
        topic: topic,
        username: username,
        message: "",
-       messages: [
-         %{uuid: UUID.uuid4(), username: "system", content: "#{username} joined the chat!"}
-       ],
+       messages: [],
        temporary_assigns: [messages: []]
      )}
   end
@@ -46,6 +44,20 @@ defmodule AppWeb.RoomLive do
 
   @impl true
   def handle_info(%{event: "presence_diff", payload: %{joins: joins, leaves: leaves}}, socket) do
-    {:noreply, socket}
+    join_messages =
+      joins
+      |> Map.keys()
+      |> Enum.map(fn username ->
+        %{uuid: UUID.uuid4(), username: "system", content: "#{username} joined the chat."}
+      end)
+
+      leave_messages =
+        leaves
+        |> Map.keys()
+        |> Enum.map(fn username ->
+          %{uuid: UUID.uuid4(), username: "system", content: "#{username} left the chat."}
+        end)
+
+        {:noreply, assign(socket, messages: join_messages ++ leave_messages)}
   end
 end
