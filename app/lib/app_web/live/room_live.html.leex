@@ -7,7 +7,9 @@
             <p id="<%= message.uuid %>"><b><%= message.username %></b>: <%= message.content %></p>
         <% end %>
         </div>
-        <%= f = form_for :chat, "#", class: "chat-form", phx_submit: :submit_message, phx_change: :form_update %>
+    </div>
+    <div class="enter-message">
+    <%= f = form_for :chat, "#", class: "chat-form", phx_submit: :submit_message, phx_change: :form_update %>
             <%= text_input f, :message, value: @message, placeholder: "Enter your message:" %>
     </div>
 </div>
