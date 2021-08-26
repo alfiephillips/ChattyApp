@@ -44,7 +44,8 @@ defmodule App.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:mnemonic_slugs, "~> 0.0.3"}
+      {:mnemonic_slugs, "~> 0.0.3"},
+      {:uuid, "~> 1.1.8"}
     ]
   end
 
@@ -56,7 +57,8 @@ defmodule App.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "cmd npm install --prefix assets"]
+      setup: ["deps.get"],
+      start: ["cmd iex -S mix phx.server"]
     ]
   end
 end
