@@ -3,10 +3,7 @@
 
 .chat-container {
   display: flex;
-  border: 3px solid grey;
-  margin: -1em 1em 1em -1em;
-  padding: 1em;
-  flex-direction: column;
+  /* flex-direction: column; */
   height: 500px;
   justify-content: space-between;
   word-wrap: break-word;
@@ -14,12 +11,25 @@
 
 .chat-messages {
   flex-grow: 1;
+  border: 3px solid grey;
+  margin: -1em 1em 1em -1em;
+  padding: 1em;
 }
 
 .enter-message {
-  width: 100%;
-  margin: -1em 1em 1em -1em;
+  width: 75%;
+  /* margin: -1em 1em 1em -1em;
+  padding: 1em; */
+}
+
+.user-list {
+  text-align: center;
   padding: 1em;
+  margin-bottom: 100px;
+}
+
+.user-list h3 {
+  font-weight: 700;
 }
 
 /* LiveView specific classes for your customizations */
