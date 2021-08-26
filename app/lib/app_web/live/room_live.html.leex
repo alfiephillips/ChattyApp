@@ -8,6 +8,12 @@
         <% end %>
         </div>
     </div>
+
+    <div class="user-list">
+        <p>User 1</p>
+        <p>User 2</p>
+    </div>
+
     <div class="enter-message">
     <%= f = form_for :chat, "#", class: "chat-form", phx_submit: :submit_message, phx_change: :form_update %>
             <%= text_input f, :message, value: @message, placeholder: "Enter your message:" %>

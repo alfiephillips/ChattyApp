@@ -5,6 +5,7 @@ defmodule AppWeb.RoomLive do
   @impl true
   def mount(%{"id" => room_id}, _session, socket) do
     topic = "room:" <> room_id
+
     if connected?(socket) do
       AppWeb.Endpoint.subscribe(topic)
     end
@@ -17,7 +18,9 @@ defmodule AppWeb.RoomLive do
        topic: topic,
        username: username,
        message: "",
-       messages: [%{uuid: UUID.uuid4(), username: "system", content: "#{username} joined the chat!"}],
+       messages: [
+         %{uuid: UUID.uuid4(), username: "system", content: "#{username} joined the chat!"}
+       ],
        temporary_assigns: [messages: []]
      )}
   end
