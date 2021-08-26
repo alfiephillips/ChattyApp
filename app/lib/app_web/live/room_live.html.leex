@@ -1,10 +1,10 @@
 <div class="room-container">
     <h1>Chat Room</h1>
-    <p>Currently chatting in <b><%= @room_id %></b></p>
+    <p>Currently chatting in <b><%= @room_id %></b> as <b><%= @username %></b></p>
     <div class="chat-container">
         <div class="chat-messages" phx-update="append">
         <%= for message <- @messages do%>
-            <p id="<%= message.uuid %>"><%= message.content %></p>
+            <p id="<%= message.uuid %>"><b><%= message.username %></b>: <%= message.content %></p>
         <% end %>
         </div>
         <%= f = form_for :chat, "#", class: "chat-form", phx_submit: :submit_message, phx_change: :form_update %>

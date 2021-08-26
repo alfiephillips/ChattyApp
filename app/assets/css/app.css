@@ -9,6 +9,7 @@
   flex-direction: column;
   height: 500px;
   justify-content: space-between;
+  word-wrap: break-word;
 }
 
 .chat-messages {
