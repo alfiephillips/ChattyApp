@@ -7,7 +7,6 @@ body {
 
 .chat-container {
   display: flex;
-  /* flex-direction: column; */
   height: 500px;
   justify-content: space-between;
   word-wrap: break-word;
@@ -20,16 +19,23 @@ body {
   padding: 1em;
 }
 
+.chat-messages p {
+  margin: 0;
+  padding: 0;
+}
+
 .enter-message {
   width: 75%;
-  /* margin: -1em 1em 1em -1em;
-  padding: 1em; */
 }
 
 .user-list {
   text-align: center;
   padding: 1em;
-  margin-bottom: 100px;
+}
+
+.user-list p {
+  padding: 0;
+  margin: 0;
 }
 
 .user-list h3 {
