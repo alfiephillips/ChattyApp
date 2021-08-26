@@ -5,12 +5,12 @@ defmodule AppWeb.RoomLive do
   @impl true
   def mount(%{"id" => room_id}, _session, socket) do
     topic = "room:" <> room_id
+    username = MnemonicSlugs.generate_slug(1)
 
     if connected?(socket) do
       AppWeb.Endpoint.subscribe(topic)
+      AppWeb.Presence.track(self(), topic, username, %{})
     end
-
-    username = MnemonicSlugs.generate_slug(1)
 
     {:ok,
      assign(socket,
@@ -42,5 +42,10 @@ defmodule AppWeb.RoomLive do
   def handle_info(%{event: "new-message", payload: message}, socket) do
     Logger.info(payload: message)
     {:noreply, assign(socket, messages: [message])}
+  end
+
+  @impl true
+  def handle_info(%{event: "presence_diff", payload: %{joins: joins, leaves: leaves}}, socket) do
+    {:noreply, socket}
   end
 end
